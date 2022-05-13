@@ -1,4 +1,4 @@
-package net.toshimichi.apg;
+package net.toshimichi.apg.jar;
 
 import lombok.SneakyThrows;
 import org.objectweb.asm.ClassWriter;

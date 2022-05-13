@@ -1,4 +1,4 @@
-package net.toshimichi.apg;
+package net.toshimichi.apg.jar;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;

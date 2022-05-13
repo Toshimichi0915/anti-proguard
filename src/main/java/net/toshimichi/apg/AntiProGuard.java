@@ -1,9 +1,17 @@
 package net.toshimichi.apg;
 
 import lombok.extern.slf4j.Slf4j;
+import net.toshimichi.apg.jar.JarReader;
+import net.toshimichi.apg.jar.JarWriter;
+import net.toshimichi.apg.transformer.IntTransformer;
+import net.toshimichi.apg.transformer.LengthTransformer;
+import net.toshimichi.apg.transformer.NegTransformer;
+import net.toshimichi.apg.transformer.NopTransformer;
+import net.toshimichi.apg.transformer.TransformerVisitor;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.zip.ZipOutputStream;
 
 @Slf4j
@@ -26,7 +34,12 @@ public class AntiProGuard {
         Path out = in.resolveSibling("deobf-" + in.getFileName());
         try (ZipOutputStream os = new ZipOutputStream(Files.newOutputStream(out))) {
             JarWriter writer = new JarWriter(os);
-            reader.accept(writer);
+            TransformerVisitor transformerVisitor = new TransformerVisitor(writer, List.of(
+                    new IntTransformer(),
+                    new LengthTransformer(),
+                    new NegTransformer(),
+                    new NopTransformer()));
+            reader.accept(transformerVisitor);
         }
     }
 }
