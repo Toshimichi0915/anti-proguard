@@ -31,11 +31,13 @@ public class IntTransformer extends PatternTransformer {
         if (op == Opcodes.IAND) {
             result = l1 & l2;
         } else if (op == Opcodes.IXOR) {
-            result = l1 | l2;
+            result = l1 ^ l2;
         } else if (op == Opcodes.ISHL) {
             result = l1 << l2;
         } else if (op == Opcodes.ISHR) {
             result = l1 >> l2;
+        } else if (op == Opcodes.IUSHR) {
+            result = l1 >>> l2;
         } else if (op == Opcodes.IADD) {
             result = l1 + l2;
         } else if (op == Opcodes.ISUB) {
