@@ -7,6 +7,7 @@ import net.toshimichi.apg.transformer.IntTransformer;
 import net.toshimichi.apg.transformer.LengthTransformer;
 import net.toshimichi.apg.transformer.NegTransformer;
 import net.toshimichi.apg.transformer.NopTransformer;
+import net.toshimichi.apg.transformer.StringTransformer;
 import net.toshimichi.apg.transformer.TransformerVisitor;
 
 import java.nio.file.Files;
@@ -38,7 +39,8 @@ public class AntiProGuard {
                     new IntTransformer(),
                     new LengthTransformer(),
                     new NegTransformer(),
-                    new NopTransformer()));
+                    new NopTransformer(),
+                    new StringTransformer()));
             reader.accept(transformerVisitor);
         }
     }

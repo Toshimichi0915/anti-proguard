@@ -18,7 +18,6 @@ abstract public class PatternTransformer implements ClassTransformer {
     @Override
     public boolean transform(String path, ClassNode cn) {
         int size = getSize();
-        boolean changed = false;
         for (MethodNode mn : cn.methods) {
             InsnList il = mn.instructions;
             for (int i = 0; i < il.size() - size; i++) {
@@ -31,8 +30,6 @@ abstract public class PatternTransformer implements ClassTransformer {
                 List<? extends AbstractInsnNode> to = transform(from);
                 if (to == null) continue;
 
-                changed = true;
-
                 AbstractInsnNode cursor = il.get(i);
                 for (int j = 0; j < to.size(); j++) {
                     AbstractInsnNode in = to.get(to.size() - j - 1);
@@ -41,8 +38,9 @@ abstract public class PatternTransformer implements ClassTransformer {
                 }
 
                 from.forEach(il::remove);
+                return true;
             }
         }
-        return changed;
+        return false;
     }
 }
