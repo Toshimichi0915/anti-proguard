@@ -5,18 +5,17 @@ import org.objectweb.asm.tree.ClassNode;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayDeque;
 import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class JarReader {
 
-    private final List<Consumer<JarVisitor>> exec;
+    private final ArrayDeque<Consumer<JarVisitor>> exec;
 
     public JarReader(byte[] contents) throws IOException {
-        this.exec = new LinkedList<>();
+        this.exec = new ArrayDeque<>();
 
         try (ZipInputStream in = new ZipInputStream(new ByteArrayInputStream(contents))) {
             while (true) {
