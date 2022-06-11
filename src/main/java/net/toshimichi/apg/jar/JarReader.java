@@ -28,7 +28,7 @@ public class JarReader {
                 } else if (entry.getName().endsWith(".class")) {
                     ClassReader reader = new ClassReader(bytes);
                     ClassNode cn = new ClassNode();
-                    reader.accept(cn, ClassReader.EXPAND_FRAMES);
+                    reader.accept(cn, ClassReader.EXPAND_FRAMES | ClassReader.SKIP_DEBUG);
                     exec.add(jv -> jv.visitSource(entry.getName(), cn));
                 } else {
                     exec.add(jv -> jv.visitResource(entry.getName(), bytes));
