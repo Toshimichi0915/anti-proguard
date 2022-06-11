@@ -9,12 +9,16 @@ mainClassName = 'net.toshimichi.apg.AntiProGuard'
 
 repositories {
     mavenCentral()
+    maven {
+        url = 'https://jitpack.io'
+    }
 }
 
 dependencies {
     implementation 'org.ow2.asm:asm-tree:9.3'
     implementation 'org.slf4j:slf4j-api:1.7.36'
     implementation 'org.slf4j:slf4j-simple:1.7.36'
+    implementation 'com.github.Col-E:CAFED00D:1.10.0'
 
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
