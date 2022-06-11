@@ -2,7 +2,7 @@
 
 > Not just for anti-proguard
 
-This is a simple deobfuscation tools, which can be used for any jar file without any configuration.
+This is a simple deobfuscation tool, which can be used for any jar file without any configuration.
 
 ## Usage
 
