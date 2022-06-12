@@ -3,6 +3,7 @@ package net.toshimichi.apg;
 import lombok.extern.slf4j.Slf4j;
 import net.toshimichi.apg.jar.JarReader;
 import net.toshimichi.apg.jar.JarWriter;
+import net.toshimichi.apg.transformer.DistinctThrowsTransformer;
 import net.toshimichi.apg.transformer.IntTransformer;
 import net.toshimichi.apg.transformer.LengthTransformer;
 import net.toshimichi.apg.transformer.NegTransformer;
@@ -42,6 +43,7 @@ public class AntiProGuard {
                     new NegTransformer(),
                     new NopTransformer(),
                     new StrictfpTransformer(),
+                    new DistinctThrowsTransformer(),
                     new StringTransformer()));
             reader.accept(transformerVisitor);
         }
