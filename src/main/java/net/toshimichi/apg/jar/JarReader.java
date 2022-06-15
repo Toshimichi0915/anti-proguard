@@ -47,6 +47,7 @@ public class JarReader {
                     exec.add(jv -> jv.visitResource(entry.getName(), copy));
                 }
             }
+            exec.add(JarVisitor::visitEnd);
         } catch (InvalidClassException e) {
             throw new IOException(e);
         }

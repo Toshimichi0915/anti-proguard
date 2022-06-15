@@ -15,6 +15,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.ow2.asm:asm-commons:9.3'
     implementation 'org.ow2.asm:asm-tree:9.3'
     implementation 'org.slf4j:slf4j-api:1.7.36'
     implementation 'org.slf4j:slf4j-simple:1.7.36'

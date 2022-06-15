@@ -29,4 +29,10 @@ public class JarVisitor {
             jv.visitResource(path, bytes);
         }
     }
+
+    public void visitEnd() {
+        if (jv != null) {
+            jv.visitEnd();
+        }
+    }
 }

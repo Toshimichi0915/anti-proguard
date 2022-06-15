@@ -37,16 +37,4 @@ public class OpcodeUtils {
             return null;
         }
     }
-
-    public static AbstractInsnNode fromLong(int opcode, long result) {
-        if (opcode == Opcodes.BIPUSH) {
-            return new IntInsnNode(Opcodes.BIPUSH, (byte) result);
-        } else if (opcode == Opcodes.SIPUSH) {
-            return new IntInsnNode(Opcodes.SIPUSH, (short) result);
-        } else if (opcode == Opcodes.LDC) {
-            return new IntInsnNode(Opcodes.SIPUSH, (int) result);
-        } else {
-            throw new IllegalArgumentException("Invalid opcode: " + opcode);
-        }
-    }
 }
