@@ -3,6 +3,7 @@ package net.toshimichi.apg.transformer;
 import net.toshimichi.apg.utils.OpcodeUtils;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.LdcInsnNode;
 
 import java.util.List;
 
@@ -20,8 +21,9 @@ public class NegTransformer extends PatternTransformer {
 
         Long l = OpcodeUtils.toLong(i1);
         if (l == null) return null;
-        if (i2.getOpcode() != Opcodes.INEG) return null;
+        if (i2.getOpcode() != Opcodes.INEG && i2.getOpcode() != Opcodes.LNEG) return null;
+        boolean lneg = i2.getOpcode() == Opcodes.LNEG;
 
-        return List.of(OpcodeUtils.fromLong(i1.getOpcode(), -l));
+        return List.of(new LdcInsnNode(lneg ? -l : (int) -l));
     }
 }
