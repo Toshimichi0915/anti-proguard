@@ -22,7 +22,7 @@ public class NegTransformer extends PatternTransformer {
         Long l = OpcodeUtils.toLong(i1);
         if (l == null) return null;
         if (i2.getOpcode() != Opcodes.INEG && i2.getOpcode() != Opcodes.LNEG) return null;
-        boolean lneg = i2.getOpcode() == Opcodes.LNEG;
+        boolean lneg = i1 instanceof LdcInsnNode lin1 && lin1.cst instanceof Long && i2.getOpcode() == Opcodes.LNEG;
 
         return List.of(new LdcInsnNode(lneg ? -l : (int) -l));
     }
